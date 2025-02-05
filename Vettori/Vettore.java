@@ -55,13 +55,89 @@ public class Vettore {
             }
         }
 
-        // Ricerca di un elemento
+        // Ricerca di un elemento: restituisco la prima posizione
+
         // 1. Dichiaro la variabile per l'elemento da cercare
-        int elementoDaCercare = 7;
+        int elementoDaCercare;
 
         // 2. Acquisisco la variabile da tastiera
+        System.out.print("Inserire il numero da cercare: ");
+
         Scanner tastiera = new Scanner(System.in);
         elementoDaCercare = tastiera.nextInt();
+
+        // Prima di iniziare la ricerca l'elemento non è stato ovviamente trovato
+        boolean trovato = false;
+        int indice = 0;
+
+        // Continuo a cercare l'elemento da trovare mentre non l'ho trovato e non ho esaminato tutti gli elementi
+        while (!trovato && indice < vettore.length) {
+            // Confronto l'elemento del vettore corrente con il valore da cercare
+            if (elementoDaCercare == vettore[indice])
+            {
+                // Bingo!!! l'ho trovato
+                trovato = true;
+            }
+            else {
+                indice++;
+            }
+        }
+
+        if (trovato) {
+            System.out.println("Elemento trovato in posizione: " + indice);
+        }
+        else {
+            System.out.println("Elemento non trovato.");
+        }
+
+        // Cerco l'elemento e restituisco tutte le posizioni in cui si trova
+
+        // Creo un array con la stessa dimensione di vettore (mi serve se per caso tutti gli elementi sono uguali
+        // all'elemento da cercare, raro ma possibile...)
+        int posizioni[] = new int[vettore.length];
+        int nrPosizioniTrovate = 0;
+
+        // Analizzo tutti gli elementi del vettore
+        for (int i = 0; i < vettore.length; i++) {
+            if (elementoDaCercare == vettore[i]) {
+                // Devo salvare la posizione
+                // Memorizzo la posizione 
+                posizioni[nrPosizioniTrovate] = i;
+                // Incremento il numero di posizioni trovate
+                nrPosizioniTrovate++;
+            }
+        }
+
+        // Chi mi dice quanto volte è presente il numero da cercare?
+
+        System.out.println(elementoDaCercare + " è stato trovato " + nrPosizioniTrovate + " volte.");
+        System.out.println("Posizioni:");
+
+        // Visualizzo a video tutte le posizioni
+        for (int i = 0; i < nrPosizioniTrovate; i++) {
+            System.out.print(posizioni[i] + ", ");
+        }
+
+        // Ordinamenti
+
+        // 1. selection sort
+        // Confronto ogni elemento con tutti i successivi, effettuo lo scambio se il primo è maggiore del secondo
+        // se si vuole ottenere un ordinamento crescente
+
+        // Prendo ogni elemento
+        for (int i = 0; i < vettore.length - 1; i++) {
+            // Lo confronto con tutti i successivi
+            for (int j = i + 1; j < vettore.length; j++) {
+                // Confronto i due elementi
+                if (vettore[i] > vettore[j]) {
+                    // Devo fare lo scambio: è necessario avere una ulteriore variabile
+                    int scambio = vettore[i];
+                    vettore[i] = vettore[j];
+                    vettore[j] = scambio;
+                }
+            }
+        }
+
 
         
 
