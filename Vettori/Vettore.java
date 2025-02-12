@@ -137,5 +137,70 @@ public class Vettore {
                 }
             }
         }
+
+        // Bubble sort ottimizzato
+
+        boolean ordinato = false;
+        int indiceUltimo = vettore.length - 1;
+
+        while (!ordinato) {
+            // Suppongo che il vettore sia ordinato, se devo effettuare uno scambio 
+            // allora vuol dire che mi ero sbagliato
+            ordinato = true;
+            for (int i = 0; i < indiceUltimo; i++) {
+                if (vettore[i] > vettore[i + 1]) {
+                    // Se effettuo uno scambio il vettore non è ordinato
+                    ordinato = false;
+                    // effettuo lo scambio
+                    int scambio = vettore[i];
+                    vettore[i] = vettore[i + 1];
+                    vettore[i + 1] = scambio;
+                }
+            }
+            // decremento il valore di indiceUltimo perché dopo aver confrontato ogni valore
+            // con il suo successivo, sono sicuro di aver spostato in fondo il valore più grande
+            indiceUltimo--;
+        }
+
+        // Ricerca binaria
+        // indiceTentativo: mi dice qual è l'indice dell'elemento da controllare
+        int indiceTentativo = 0;
+        // variabile che mi segnala il primo elemento dell'intervallo da controllare
+        int limiteInf = 0;
+        // variabile che mi segnala l'ultimo elemento da controllare
+        int limiteSup = vettore.length -1;
+        
+        // varibile che mi dice se l'elemento è stato trovato
+        trovato = false;
+
+        while(!trovato && limiteInf <= limiteSup) {
+            // Calcolare l'indice dell'elemento del vettore da controllare
+            indiceTentativo = (limiteInf + limiteSup) / 2;
+            // effettuo il controllo
+            if(elementoDaCercare == vettore[indiceTentativo]) {
+                // Ho trovato l'elemento!
+                trovato = true;
+            }
+            else {
+                // Devo stabilire in che parte del vettore potrebbe trovarsi l'elemento,
+                // e devo scartare la parte dove sicuramente non si trova
+                if(elementoDaCercare < vettore[indiceTentativo]) {
+                    // Scarto la metà di destra del vettore, per farlo sposto limite superiore
+                    limiteSup = indiceTentativo - 1;
+                }
+                else {
+                    // Scarto la metà sinistra del vettore, per farlo sposto limite inferiore
+                    limiteInf = indiceTentativo + 1;
+                }
+            }
+        }
+
+        if(trovato) {
+            System.out.println(elementoDaCercare + " si trova in posizione: " + indiceTentativo);
+        }
+        else {
+            System.out.println(elementoDaCercare + " non è presente in vettore.");
+        }
+        
     }
 }
