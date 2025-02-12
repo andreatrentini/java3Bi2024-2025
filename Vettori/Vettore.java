@@ -137,9 +137,5 @@ public class Vettore {
                 }
             }
         }
-
-
-        
-
     }
 }
