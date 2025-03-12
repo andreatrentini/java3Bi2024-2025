@@ -1,0 +1,15 @@
+{
+    "name": "Java 21 & Gradle Dev Environment",
+    "build": {
+      "dockerfile": "../Dockerfile"
+    },
+    "settings": {
+      // Qui puoi aggiungere eventuali impostazioni specifiche per VS Code all'interno del container
+    },
+    "extensions": [
+      "vscjava.vscode-java-pack"  // Estensione per il supporto Java in VS Code
+    ],
+    "mounts": [
+      "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+    ]
+  }
