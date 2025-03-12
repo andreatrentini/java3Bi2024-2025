@@ -1,0 +1,5 @@
+Risultati analisi del file: /workspaces/java3Bi2024-2025/Vettori/testo.txt
+
+Numero di righe:4
+Numero di caratteri:272
+Numero di parole:41
